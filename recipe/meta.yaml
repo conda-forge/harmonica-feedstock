@@ -1,13 +1,13 @@
 {% set name = "harmonica" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 552fb15217de85736dc7fea045feccc4c5a4bec3d6b25e617124f6fd633c288f
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}-1.tar.gz
+  sha256: 01a84f5249644dd373d2e9bc5b3fd91819bfbe77ec275d4f829d70a508252f44
 
 build:
   noarch: python
@@ -18,6 +18,7 @@ requirements:
   host:
     - python >=3.6
     - pip
+    - setuptools_scm
   run:
     - python >=3.6
     - numpy
@@ -26,7 +27,7 @@ requirements:
     - xarray
     - numba
     - pooch >=0.7.0
-    - verde
+    - verde >=1.5.0
 
 test:
   imports:
