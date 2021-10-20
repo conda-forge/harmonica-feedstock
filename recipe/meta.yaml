@@ -22,7 +22,7 @@ requirements:
   run:
     - python >=3.6
     - numpy
-    - scipy
+    - scikit-learn
     - pandas
     - xarray
     - numba
