@@ -1,5 +1,5 @@
 {% set name = "harmonica" %}
-{% set version = "0.3.1" %}
+{% set version = "0.3.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 6d71948b443b31b07c9cb9a199bf76da5712fab8659a394b8e396fd0c88f61d5
+  sha256: d3f4dad21b3f744661af549323c209e85753f9590d604b3253c0c6bb82d6aa3a
 
 build:
   noarch: python
