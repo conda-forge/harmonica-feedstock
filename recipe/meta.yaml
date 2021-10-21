@@ -1,5 +1,5 @@
 {% set name = "harmonica" %}
-{% set version = "0.2.1" %}
+{% set version = "0.3.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ef1816b0c992747fc4758e35f24e541a799684a0d94d0bef5fa71008ec7e57a2
+  sha256: 6d71948b443b31b07c9cb9a199bf76da5712fab8659a394b8e396fd0c88f61d5
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
@@ -22,7 +22,7 @@ requirements:
   run:
     - python >=3.6
     - numpy
-    - scipy
+    - scikit-learn
     - pandas
     - xarray
     - numba
@@ -38,7 +38,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
-  summary: "Processing and modeling gravity and magnetic data"
+  summary: Processing and modeling gravity and magnetic data
   description: |
     Harmonica is a Python library for processing and modeling gravity and
     magnetic data. It includes common processing steps, like calculation of
