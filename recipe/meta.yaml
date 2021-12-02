@@ -1,5 +1,5 @@
 {% set name = "harmonica" %}
-{% set version = "0.3.3" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: cb400bde3607be4be206e8eef1c9c0d780fc7d48ecc796af21f32f50308bd1e8
+  sha256: 812fccac9cae9a0d759a0353358437276ba666873b2149e1efa3215d94bfe8cb
 
 build:
   noarch: python
@@ -22,6 +22,7 @@ requirements:
   run:
     - python >=3.6
     - numpy
+    - scipy
     - scikit-learn
     - pandas
     - xarray
