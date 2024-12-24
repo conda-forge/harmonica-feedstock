@@ -6,21 +6,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: a4f889b121778479a87d94e481c423e51dd4355593fbab497ad357c0c7fa219a
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python >=3.9
+    - python {{ python_min }}
     - pip
     - setuptools_scm
   run:
-    - python >=3.9
+    - python >={{ python_min }}
     - numpy >=1.23
     - scipy >=1.9
     - scikit-learn >=1.0
@@ -32,6 +32,8 @@ requirements:
     - choclo >=0.1
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - harmonica
 
