@@ -1,50 +1,60 @@
-{% set name = "harmonica" %}
-{% set version = "0.7.0" %}
-{% set python_min = "3.9" %}
+schema_version: 1
+
+context:
+  version: "0.7.0"
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: harmonica
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/h/harmonica/harmonica-${{ version }}.tar.gz
   sha256: a4f889b121778479a87d94e481c423e51dd4355593fbab497ad357c0c7fa219a
 
 build:
+  number: 2
   noarch: python
-  number: 1
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: ${{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python {{ python_min }}
-    - pip
+    - python ${{ python_min }}.*
     - setuptools >=61
-    - setuptools_scm >=8.0.3
+    - setuptools-scm >=8.0.3
+    - pip
   run:
-    - python >={{ python_min }}
+    - python >=${{ python_min }}
     - numpy >=1.23
+    - pandas >=1.4
     - scipy >=1.9
     - scikit-learn >=1.0
-    - pandas >=1.4
-    - xarray >=2022.03
     - numba >=0.53
+    - xarray >=2022.03
     - verde >=1.8.1
     - xrft >=1.0
     - choclo >=0.1
 
-test:
-  requires:
-    - python {{ python_min }}
-  imports:
-    - harmonica
+tests:
+  - python:
+      imports:
+        - harmonica
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - python -c "import harmonica; assert harmonica.__version__ != '0.0.0'"
 
 about:
-  home: http://github.com/fatiando/harmonica
+  summary: Forward modeling, inversion, and processing gravity and magnetic data
   license: BSD-3-Clause
-  license_family: BSD
   license_file: LICENSE.txt
-  summary: Processing and modeling gravity and magnetic data
+  homepage: https://pypi.org/project/harmonica/
+  documentation: https://www.fatiando.org/harmonica
+  repository: https://github.com/fatiando/harmonica
   description: |
     Harmonica is a Python library for processing and modeling gravity and
     magnetic data. It includes common processing steps, like calculation of
@@ -53,8 +63,6 @@ about:
     functions for basic geometric shapes, like spheres, prisms, polygonal
     prisms, and tesseroids. The inversion methods are implemented as classes
     with an interface inspired by scikit-learn (like Verde).
-  doc_url: https://www.fatiando.org/harmonica
-  dev_url: https://github.com/fatiando/harmonica
 
 extra:
   recipe-maintainers:
